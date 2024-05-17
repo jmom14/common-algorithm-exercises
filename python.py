@@ -191,3 +191,42 @@ def groupAnagrams(strs):
 
 assert groupAnagrams(["a"]) == [["a"]]
 assert groupAnagrams(["eat","tea","tan","ate","nat","bat"])== [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+
+
+'''
+leetcode: https://leetcode.com/problems/group-anagrams/
+hackerrank: ?
+
+Problem: Group Anagrams
+
+Example 1:
+Input: ["eat","tea","tan","ate","nat","bat"]
+Output: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+'''
+
+def groupAnagrams(strs):
+    fm = {}
+
+    for word in strs:
+        sorted_word = "".join(sorted(word))
+        
+        if sorted_word in fm:                                
+            fm[sorted_word].append(word)
+        else:
+            fm[sorted_word] = [word]
+            
+    return [*fm.values()]
+
+assert groupAnagrams(["eat","tea","tan","ate","nat","bat"]) == [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+
+
+'''
+leetcode: ?
+hackerrank: ?
+
+Problem: 
+
+Example 1:
+Input: 
+Output: 
+'''
