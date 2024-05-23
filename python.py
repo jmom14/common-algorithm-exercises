@@ -194,31 +194,52 @@ assert groupAnagrams(["eat","tea","tan","ate","nat","bat"])== [['eat', 'tea', 'a
 
 
 '''
-leetcode: https://leetcode.com/problems/group-anagrams/
+leetcode: ?
 hackerrank: ?
 
-Problem: Group Anagrams
+Problem: Split array into subarrays
+Given an array of integers, define a method to split the array into subarrays with the following constraints:
+Each subarray only contains unique elements
+You use the minimum number of sublists possible
+Return the subarrays as an array of arrays.
 
 Example 1:
-Input: ["eat","tea","tan","ate","nat","bat"]
-Output: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+Input: [1, 2, 3], Output: [[1, 2, 3]]
+
+Example 2:
+Input: [1, 2, 2, 3], Output: [[1, 2, 3], [2]]
+
+Example 3:
+Input: [1, 2, 2, 2, 3, 3], Output: [[1, 2, 3], [2, 3], [2]]
 '''
 
-def groupAnagrams(strs):
-    fm = {}
+from collections import Counter
+def unique_batches(input):
+    fm = Counter(input)
+    mf = max(fm.values())
+    i = 0
+    output = []
+    while i < mf:
+        output.append([])
 
-    for word in strs:
-        sorted_word = "".join(sorted(word))
-        
-        if sorted_word in fm:                                
-            fm[sorted_word].append(word)
-        else:
-            fm[sorted_word] = [word]
-            
-    return [*fm.values()]
+        for key in list(fm.keys()):
+            fm[key] -= 1
+            output[-1].append(key)
+            if not fm[key]:
+                del fm[key]
 
-assert groupAnagrams(["eat","tea","tan","ate","nat","bat"]) == [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+        i += 1
+    return output
 
+sample_1 = [1, 2, 3]
+sample_2 = [1, 2, 2, 3]
+sample_3 = [1, 2, 2, 2, 3, 3]
+sample_4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1]
+
+assert unique_batches(sample_1) == [[1, 2, 3]]
+assert unique_batches(sample_2) == [[1, 2, 3], [2]]
+assert unique_batches(sample_3) == [[1, 2, 3], [2, 3], [2]]
+assert unique_batches(sample_4) == [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1]]
 
 '''
 leetcode: ?
