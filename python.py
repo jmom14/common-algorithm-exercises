@@ -118,6 +118,21 @@ def fib(n):
     if n == 0: return 0
     if n == 1 or n == 2: return 1   
     return fib(n-1) + fib(n-2)
+
+
+def dynamic_programming_fib(n):
+    memo = {}
+    if n in memo:
+        return memo[n]
+    
+    if n == 0: return 0
+    if n == 1 or n == 2: return 1
+    
+    res = fib(n-1) + fib(n-2)
+    if res not in memo:
+        memo[n] = res
+        
+    return res
 	
 
 assert fib(4) == 3
