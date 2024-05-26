@@ -1,6 +1,13 @@
 
 '''
+leetcode: ?
+hackerank: ?
+
 Problem: Sliding window
+
+Example:
+Input: 
+Output: 
 '''
 
 def get_diff(a,b):
@@ -31,6 +38,7 @@ def segment(x, space):
 
 '''
 leetcode: https://leetcode.com/problems/contains-duplicate/
+hackerank: ?
 
 Problem: Contains Duplicate
 
@@ -52,6 +60,7 @@ def containsDuplicate(self, nums) -> bool:
 
 '''
 leetcode: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+hackerrank: ?
 
 Problem: Longest Substring Without Repeating Characters
 
@@ -78,7 +87,8 @@ def lengthOfLongestSubstring(self, s: str) -> int:
     return output
 
 '''
-leetcode: https://leetcode.com/problems/reverse-string/
+leetcode: https://leetcode.com/problems/reverse-string/description/
+hackerrank: ?
 
 Problem: Reverse String
 
@@ -100,7 +110,14 @@ def reverseString(self, s) -> None:
 
 
 '''
+leetcode: https://leetcode.com/problems/reverse-string/description/
+hackerrank: ?
+
 Problem: Binary search
+
+Example: 
+Input: nums = [1, 5, 9, 10, 14, 16, 78, 100, 121, 122, 123]
+Output: true
 '''
 
 def binary_search(arr, a, b, search):
@@ -119,3 +136,53 @@ def binary_search(arr, a, b, search):
     
 nums = [1, 5, 9, 10, 14, 16, 78, 100, 121, 122, 123]
 print(binary_search(nums, 0, len(nums) - 1, 123))
+
+
+'''
+leetcode: https://leetcode.com/problems/valid-parentheses/description/
+hackerrank: ?
+
+Problem: Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+
+Example 1: 
+Input: "([}}])"
+Output: False
+'''
+
+def isValid(s):
+    if not len(s) % 2 == 0:
+        return False
+    p={ 
+        '}': '{',
+        ']': '[',
+        ')': '(',
+    }
+    stack = []
+    for item in s:
+        
+        if stack and item in p and stack[-1] == p[item]:
+            stack.pop()
+        else:
+            stack.append(item)
+
+    return len(stack) == 0
+
+
+assert isValid("([}}])") == False 
+assert isValid("()[]{}") == True
+
+
+
+
+'''
+leetcode: ?
+hackerrank: ?
+
+Problem: 
+
+Example: 
+Input: 
+Output: 
+'''
+
