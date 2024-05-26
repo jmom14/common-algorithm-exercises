@@ -257,6 +257,70 @@ assert unique_batches(sample_3) == [[1, 2, 3], [2, 3], [2]]
 assert unique_batches(sample_4) == [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1]]
 
 '''
+leetcode: https://leetcode.com/problems/first-missing-positive/
+hackerrank: ?
+
+Problem: First Missing Positive
+
+Example 1:
+Input: nums = [3,4,-1,1]
+Output: 2
+
+Example 2:
+Input: nums = [7,8,9,11,12]
+Output: 1
+
+'''
+
+# Time complexity: O(n)
+# Space complexity: O(1)
+
+def solution(nums):
+        for i in range(len(nums)):                 
+            if nums[i] <= 0:
+                nums[i] = len(nums) + 1
+
+        for j in range(len(nums)):
+            index_to_negative = abs(nums[j]) - 1            
+            if index_to_negative >= 0 and index_to_negative < len(nums):
+                nums[index_to_negative] = abs(nums[index_to_negative]) * -1    
+        
+        for i in range(len(nums)):
+            if nums[i] > 0:
+                return i + 1
+                
+        return len(nums) + 1
+
+# Time complexity: O(n)
+# Space complexity: O(n)
+
+def solution(arr):
+    arr_copy = [None]*len(arr)
+    
+    for i in range(len(arr_copy)):
+        if arr[i] and arr[i] >= 0 and arr[i] <= len(arr):
+            arr_copy[i] = 1
+
+    for i in range(len(arr_copy)):
+        if arr_copy[i] == None:
+            return i+1
+    
+    return len(arr) + 1
+    
+
+
+# Time complexity: O(n)
+# Space complexity: O(n)
+
+def solution(nums):
+        nums = set(nums)
+        
+        for i in range(1,len(nums)+2):
+            if i not in nums:
+                return i
+
+
+'''
 leetcode: ?
 hackerrank: ?
 
