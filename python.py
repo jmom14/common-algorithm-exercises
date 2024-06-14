@@ -321,6 +321,55 @@ def solution(nums):
 
 
 '''
+Problem: Grouping transactions
+Input: ['orange', 'apple', 'banana', 'grapes', 'orange']
+Output: ['orange 2', 'apple 1', 'banana 1', 'grapes 1']
+'''
+
+def group_transactions(transactions):
+    output = []
+    fm = {}
+    for item in transactions:
+        fm[item] = fm.get(item, 0) + 1
+
+    for key, value in sorted(list(fm.items()), key=lambda item: (-item[1], item[0])):
+        output.append(f'{key} {value}')
+
+    return output
+
+sample = ['orange', 'banana', 'grapes', 'orange', 'grapes', 'grapes', 'grapes', 'grapes', 'grapes', 'melon', 'apple']
+response = ['grapes 6', 'orange 2', 'apple 1', 'banana 1', 'melon 1']
+assert group_transactions(sample) == response
+
+
+"""
+leetcode: https://leetcode.com/problems/pascals-triangle/
+hackerrank: ?
+
+Problem: Pascal's Triangle
+"""
+
+def generate(numRows: int):
+    output = [[1]]
+
+    for i in range(1, numRows):
+        
+        arr = [1]
+        for j in range(1, i):
+            
+            r = output[i-1][j] + output[i-1][j-1]
+            arr.append(r)
+            
+        arr.append(1)
+        output.append(arr)
+        
+    return output
+    
+response = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1]]
+assert generate(6) == response
+
+
+"""
 leetcode: ?
 hackerrank: ?
 
@@ -328,5 +377,5 @@ Problem:
 
 Example 1:
 Input: 
-Output: 
-'''
+Output:
+"""
